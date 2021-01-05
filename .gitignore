@@ -1,0 +1,7 @@
+.python-version
+.idea
+*.egg-info
+build/*
+dist/*
+/venv/
+*.pyc

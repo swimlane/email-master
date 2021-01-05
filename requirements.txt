@@ -1,0 +1,5 @@
+pendulum==1.2.5
+compressed-rtf==1.0.5
+extract_msg==0.23.2
+six==1.13.0
+PGPy==0.5.2
