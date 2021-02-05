@@ -66,7 +66,9 @@ class EMLMessage(EmailMasterMessage):
                 ctype = "application/octet-stream"
             maintype, subtype = ctype.split("/", 1)
             if six.PY3:
-                if attach_hook:
+                # When the eml is an attachment it must remain application/octet-stream.
+                # For other file types we will apply the hook.
+                if attach_hook and not attch.filename.endswith('.eml'):
                     attch_kwargs = attach_hook(attch)
                 else:
                     attch_kwargs = {

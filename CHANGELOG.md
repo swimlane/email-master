@@ -1,6 +1,9 @@
 # CHANGELOG
 
-# 0.4.18 - 0.4.20 2020-11-20
+# 0.4.23 2020-11-20
+* Updated attachment hook in message.py to exclude .eml files. This will keep the content type application/octet-stream for eml attachments.
+
+# 0.4.18 - 0.4.22 2020-11-20
 * Bug in python's email lib. Added overwrite for generate.py in compat dir with new string function.
 * import new as_string function for pgp 
 * import error on new function
