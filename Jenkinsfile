@@ -64,6 +64,11 @@ spec:
                     cleanWs()
                     }
                 }
+            stage('Start Test Job'){
+              steps{
+                build job:'Email Master Test'
+              }
+            }
           }
         }
       }
