@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# 0.4.24 2021-02-17
+
+* Updated Pendulum from 1.2.5 to 2.1.2
+
 # 0.4.23 2020-11-20
 * Updated attachment hook in message.py to exclude .eml files. This will keep the content type application/octet-stream for eml attachments.
 

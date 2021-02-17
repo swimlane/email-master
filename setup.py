@@ -7,13 +7,13 @@ with open('./README.rst') as f:
 setup(
     name='email-master',
     packages=['email_master', 'email_master.eml', 'email_master.msg', 'email_master.pgp'],
-    version='0.4.23',
+    version='0.4.24',
     description='Master Email Parsing Package',
     author='Swimlane',
     author_email="info@swimlane.com",
     long_description=long_description,
     install_requires=[
-        "pendulum==1.2.5",
+        "pendulum==2.1.2",
         "compressed-rtf==1.0.5",
         "extract_msg==0.23.2",
         "six==1.13.0",
