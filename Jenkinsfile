@@ -41,6 +41,8 @@ spec:
                 container("python"){
                   retry(2) {
                     sh """
+                    pip3 install --upgrade pip
+                    pip3 install cryptography==3.3.2
                     pip install wheel
                     pip install -r requirements.txt                    
                     """
@@ -63,12 +65,7 @@ spec:
                 steps{
                     cleanWs()
                     }
-                }
-            stage('Start Test Job'){
-              steps{
-                build job:'Email Master Test'
-              }
-            }
+                }            
           }
         }
       }
