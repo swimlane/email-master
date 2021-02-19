@@ -2,7 +2,6 @@ pipeline {
   agent none
   environment {
     ACTUAL_BRANCH = "${env.CHANGE_BRANCH ?: env.BRANCH_NAME}"
-    TEST_BRANCH = "${ACTUAL_BRANCH == "main" ? "master" : ACTUAL_BRANCH}"
   }
 
   stages {
@@ -102,7 +101,7 @@ spec:
               steps{
                 container("python-test"){                
                   dir('tests'){ 
-                    git credentialsId: 'github-jenkins-pat-new', branch: "${TEST_BRANCH}", url: 'https://github.com/swimlane/email-master-test-data.git'                      
+                    git credentialsId: 'github-jenkins-pat-new', branch: "master", url: 'https://github.com/swimlane/email-master-test-data.git'                      
                   }
                 }
               }
@@ -169,14 +168,5 @@ spec:
         }
       }
     }
-  }
-}
-
-def getTestBranchName(branchName) {
-  if(branchName == "master"){
-    return "main"
-  }
-  else {
-    return branchName
   }
 }
