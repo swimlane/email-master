@@ -94,7 +94,7 @@ class EMLParser(EmailParser):
                 if should_be_body:
                     return self._decode_body(part)
         else:
-            if self.msg.get_content_type() == "text/plain":
+            if self.msg.get_content_type() in ["text/plain", "text/calendar"]:
                 return self._decode_body(self.msg)
 
         for bod in possible_bodies:
