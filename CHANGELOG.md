@@ -1,5 +1,10 @@
 # CHANGELOG
 
+# 0.4.25 2021-02-20
+
+* SMTP send email: all recipients fix
+* IMAP Ingest: outlook calendar .eml invites parsing fix
+
 # 0.4.24 2021-02-17
 
 * Updated Pendulum from 1.2.5 to 2.1.2
