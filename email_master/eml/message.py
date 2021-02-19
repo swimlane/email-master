@@ -26,7 +26,11 @@ class EMLMessage(EmailMasterMessage):
         self._debug_info = {}
 
     def _get_to_addrs(self):
-        return list(filter(lambda x: x, [self.message_obj["To"], self.message_obj["Cc"], self.message_obj["Bcc"]]))
+        to_ = []
+        for i in ['To', 'Cc', 'Bcc']:
+            if i in self.message_obj.keys():
+                to_ += self.message_obj[i].split(',')
+        return to_
 
     def test_conn(self, username, password, host, port, verify_conn=True):
         conn = smtplib.SMTP(host, port, timeout=5)
