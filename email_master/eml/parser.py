@@ -6,6 +6,7 @@ from email_master.compat import base64_decode, base64_decode_to_bytes, to_unicod
 import six
 import uuid
 from binascii import Error as BinASCIIError
+import json
 
 if six.PY2:
     from HTMLParser import HTMLParser
@@ -57,6 +58,12 @@ class EMLParser(EmailParser):
 
     def get_raw_headers(self):
         return u"\n".join([u"{}: {}".format(unicode(h[0], "utf-8", "ignore"), unicode(h[1], "utf-8", "ignore")) for h in self.msg.items() or []])
+
+    def get_headers_json(self):
+        json_dict = {}
+        for h in self.msg.items():
+            json_dict[unicode(h[0], "utf-8", "ignore")] = unicode(h[1], "utf-8", "ignore")
+        return json.dumps(json_dict)
 
     def get_sender(self):
         return EmailUtil.try_decode(self.msg['From']) or u""

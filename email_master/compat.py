@@ -49,7 +49,7 @@ def base64_decode(data, *args, **kwargs):
 
 def to_unicode(ss, enc=None, errors=None):
     # Strings are already unicode inheritly in python3
-    return ss
+    return str(ss)
 
 
 """
@@ -601,3 +601,4 @@ def override_as_string(msg_obj, unixfrom=False, maxheaderlen=0, policy=None):
                   policy=policy)
     g.flatten(msg_obj, unixfrom=unixfrom)
     return fp.getvalue()
+

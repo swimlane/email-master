@@ -31,6 +31,7 @@ FIELD_TYPES = {
     "bcc": (StringTypes, u""),
     "raw_content": (StringTypes, u""),
     "raw_headers": (StringTypes, u""),
+    "headers_json": (StringTypes, u""),
     "reply_to": (StringTypes, u""),
     "sender": (StringTypes, u""),
     "plaintext_body": (StringTypes, u""),
@@ -80,6 +81,9 @@ class EmailParser(object):
         raise NotImplementedError
 
     def get_raw_headers(self):
+        raise NotImplementedError
+
+    def get_headers_json(self):
         raise NotImplementedError
 
     def get_reply_to(self):
@@ -188,6 +192,7 @@ class EmailParser(object):
         result["bcc"] = self.get_bcc()
         result["raw_headers"] = self.get_raw_headers()
         result["raw_content"] = self.get_raw_content()
+        result["headers_json"] = self.get_headers_json()
 
         result["headers"] = EmailUtil.try_decode(''.join(h[0] + ": " + h[1] + "\n" for h in self.get_headers()))
 
