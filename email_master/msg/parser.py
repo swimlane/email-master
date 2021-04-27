@@ -8,6 +8,7 @@ from extract_msg.utils import xstr
 import hashlib
 import re
 import six
+import json
 
 if six.PY3:
     unicode = to_unicode
@@ -143,6 +144,12 @@ class MSGParser(EmailParser):
 
     def get_raw_headers(self):
         return u"\n".join([u"{}: {}".format(h[0], h[1]) for h in self.get_headers() or []])
+
+    def get_headers_json(self):
+        json_dict = {}
+        for h in self.get_headers():
+            json_dict[h[0]] = h[1]
+        return json.dumps(json_dict)
 
     def get_reply_to(self):
         return self._get_msg_data('__substg1.0_1042')

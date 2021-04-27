@@ -5,3 +5,5 @@ build/*
 dist/*
 /venv/
 *.pyc
+result.txt
+test_email.py

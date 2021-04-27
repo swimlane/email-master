@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# 0.5.0 2021-04-19
+
+* Added a headers json field to parse email headers.
+
 # 0.4.25 2021-02-19
 
 * SMTP send email: all recipients fix

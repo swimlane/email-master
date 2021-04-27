@@ -55,6 +55,9 @@ class EmailMasterParser(EmailParser):
     def get_raw_headers(self):
         return self.parser.get_raw_headers()
 
+    def get_headers_json(self):
+        return self.parser.get_headers_json()
+
     def get_reply_to(self):
         return self.parser.get_reply_to()
 
