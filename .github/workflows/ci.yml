@@ -1,0 +1,53 @@
+name: Email Master CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.9
+        with:
+          versionSpec: "5.x"
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Determine Version
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0.9.9
+        with:
+          useConfigFile: true
+
+      - name: Create Folder
+        run: mkdir dist
+
+      - name: Docker Run Action
+        run: |
+          docker run --rm --mount type=bind,source="${{ github.workspace }}",target="/build" --mount type=bind,source="${{ github.workspace }}/dist",target="/build/dist" --workdir "/build" python:3.6 python setup.py bdist_wheel
+
+      - name: Archive integration
+        uses: actions/upload-artifact@v2
+        with:
+          name: integration
+          path: |
+            dist/*.whl
+
+      - name: Release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          title: "${{ steps.gitversion.outputs.semVer}}"
+          automatic_release_tag: "${{ steps.gitversion.outputs.semVer}}"
+          prerelease: ${{ steps.gitversion.outputs.preReleaseLabel != '' }}
+          files: |
+            CHANGELOG.md
+            dist/*.whl
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
